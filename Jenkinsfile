@@ -1,10 +1,10 @@
 pipeline {
-    agent {
-        
+
+       
 
 
-   
-    
+  
+
     options {
         skipStagesAfterUnstable()
     }
