@@ -1,25 +1,15 @@
 pipeline {
-
        agent any
-
-
-  
-
     environment {
-        // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus3"
-        // This can be http or https
         NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "http://35.223.113.198:8081/"
-        // Repository where we will upload the artifact
+        NEXUS_URL = "http://35.223.113.198:8081/
         NEXUS_REPOSITORY = "maven-snapshots"
-        // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "3fcf2c86-0c65-445c-816f-fe1998cdea3c"
     }
     options {
         skipStagesAfterUnstable()
-    }
+   	    }
     stages {
         stage('Build') {
             steps {
@@ -55,18 +45,14 @@ pipeline {
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
-                                // Artifact generated such as .jar, .ear and .war files.
                                 [artifactId: pom.artifactId,
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
-                                // Lets upload the pom.xml file for additional information for Transitive dependencies
                                 [artifactId: pom.artifactId,
                                 classifier: '',
                                 file: "pom.xml",
-                                type: "pom"]] );
-			}
-                     else { error "*** File: ${artifactPath}, could not be found"; }
+                                type: "pom"]] );} else { error "*** File: ${artifactPath}, could not be found"; }
 }
 }
 }
@@ -77,6 +63,7 @@ pipeline {
             }
         }
    }
+}
 
  
 
