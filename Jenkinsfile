@@ -60,7 +60,7 @@ pipeline {
         stage('Deliver') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
-		sh 'mvn dependency:get -DremoteRepositories=http://35.223.113.198:8081/repository/maven-snapshots/ -Dartifact=com.mycompany.app:my-app:LATEST:jar -Dtransitive=false -Ddest=component.jar'
+		sh 'mvn dependency:get -DremoteRepositories=http://35.223.113.198:8081/repository/maven-snapshots/ -Dartifact=com.mycompany.app:my-app:use-latest-releases:jar -Dtransitive=false -Ddest=component.jar'
             }
         }
    }
